@@ -1,0 +1,45 @@
+.dock {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 540px) 1fr;
+  grid-template-areas: 'today composer later';
+  align-items: end;
+  gap: 24px;
+  padding: 0 28px calc(26px + env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+
+.dock > * {
+  pointer-events: auto;
+}
+
+/* Soft ground so seeds drifting low don't collide with the controls. */
+.dock::before {
+  content: '';
+  position: absolute;
+  inset: -22px 0 0;
+  background: linear-gradient(to bottom, rgb(243 239 230 / 0), var(--paper) 62%);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.dock.is-quiet .basket {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .dock {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'today later'
+      'composer composer';
+    gap: 10px;
+    padding: 0 14px calc(14px + env(safe-area-inset-bottom));
+  }
+}

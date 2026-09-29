@@ -1,0 +1,126 @@
+.meadow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 230px;
+  pointer-events: none;
+}
+
+.meadow__soil {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  bottom: 97px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgb(30 37 32 / 0.2) 14%,
+    rgb(30 37 32 / 0.2) 86%,
+    transparent
+  );
+}
+
+/* Rooted above the dock so the controls' haze doesn't wash the meadow out. */
+.mark {
+  position: absolute;
+  bottom: 98px;
+  width: 64px;
+  height: var(--h);
+  translate: -50% 0;
+  transform-origin: bottom center;
+  scale: var(--scale);
+  animation: mark-grow 1.1s var(--ease-spring) both;
+}
+
+.mark__sway {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom center;
+  animation: mark-sway var(--sway) ease-in-out var(--sway-delay) infinite alternate;
+}
+
+.mark__art {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mark__stem {
+  fill: none;
+  stroke: #6f8163;
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: calc(0.42 + var(--vivid) * 0.42);
+}
+
+.mark--bloom .mark__head ellipse {
+  fill: var(--fill);
+  opacity: var(--vivid);
+}
+
+.mark--bloom .mark__eye {
+  fill: var(--ink);
+  opacity: calc(var(--vivid) * 0.5);
+}
+
+.mark--wisp .mark__wisp path {
+  fill: none;
+  stroke: #848b7a;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  opacity: calc(var(--vivid) * 0.8);
+}
+
+.mark--wisp .mark__eye {
+  fill: #848b7a;
+  opacity: calc(var(--vivid) * 0.7);
+}
+
+@keyframes mark-grow {
+  0% {
+    scale: 0;
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    scale: var(--scale);
+    opacity: 1;
+  }
+}
+
+@keyframes mark-sway {
+  from {
+    transform: rotate(calc(var(--lean) * 0.25 - 2deg));
+  }
+  to {
+    transform: rotate(calc(var(--lean) * 0.25 + 2deg));
+  }
+}
+
+@media (max-width: 720px) {
+  .meadow {
+    height: 240px;
+  }
+
+  .meadow__soil,
+  .mark {
+    bottom: 162px;
+  }
+
+  .mark {
+    scale: calc(var(--scale) * 0.74);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .mark__sway {
+    animation: none;
+  }
+}

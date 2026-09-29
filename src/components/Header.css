@@ -1,0 +1,128 @@
+.header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: calc(26px + env(safe-area-inset-top)) 32px 0;
+  pointer-events: none;
+}
+
+.header > * {
+  pointer-events: auto;
+}
+
+.wordmark {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  font-variation-settings: 'opsz' 48, 'SOFT' 50;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.wordmark em {
+  font-weight: 350;
+  color: var(--moss);
+}
+
+.brand__level {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+.meter {
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  padding: 4px 6px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  text-align: right;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.meter:hover,
+.meter:focus-visible {
+  background: rgb(30 37 32 / 0.05);
+  outline: none;
+}
+
+.meter__row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.meter__value {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-variation-settings: 'opsz' 48;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+.meter__ticks {
+  display: flex;
+  gap: 4px;
+}
+
+.meter__ticks span {
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--line);
+  transform-origin: bottom;
+  transition:
+    background 0.5s var(--ease-soft),
+    transform 0.5s var(--ease-spring);
+  transition-delay: calc(var(--i) * 18ms);
+}
+
+.meter__ticks span.is-on {
+  background: var(--ink);
+  transform: scaleY(1.25);
+}
+
+.meter__meta {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+.meter__warn {
+  color: #9a6b4a;
+}
+
+@media (max-width: 720px) {
+  .header {
+    padding: calc(18px + env(safe-area-inset-top)) 20px 0;
+  }
+
+  .wordmark {
+    font-size: 19px;
+    max-width: 7em;
+    line-height: 1.05;
+  }
+
+  .meter__value {
+    font-size: 22px;
+  }
+
+  .meter__ticks span {
+    width: 2.5px;
+    height: 11px;
+  }
+
+  .meter__meta {
+    font-size: 11.5px;
+  }
+}

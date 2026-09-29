@@ -1,0 +1,107 @@
+.sheet__title {
+  margin: 14px 0 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 44px;
+  font-weight: 350;
+  font-variation-settings: 'opsz' 120, 'SOFT' 50;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.sheet__lede {
+  margin: 12px 0 26px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  text-wrap: pretty;
+}
+
+.sheet__list {
+  margin: 0 -4px;
+  padding: 0 4px;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  overflow-y: auto;
+}
+
+.sheet__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  animation: sheet-item-in 0.5s var(--ease-out) both;
+}
+
+.sheet__dot {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.sheet__words {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+}
+
+.sheet__text {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-variation-settings: 'opsz' 24;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.sheet__meta {
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.sheet__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+
+.sheet__actions .text-button {
+  font-size: 13px;
+}
+
+.sheet__done {
+  padding: 7px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    transform 0.35s var(--ease-spring);
+}
+
+.sheet__done:hover,
+.sheet__done:focus-visible {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper-light);
+  outline: none;
+}
+
+.sheet__done:active {
+  transform: scale(0.88);
+}
+
+@keyframes sheet-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

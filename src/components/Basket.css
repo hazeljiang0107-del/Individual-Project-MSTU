@@ -1,0 +1,136 @@
+.basket {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  padding: 8px 10px 8px 8px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    opacity 0.4s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.basket--today {
+  grid-area: today;
+  justify-self: start;
+}
+
+.basket--later {
+  grid-area: later;
+  justify-self: end;
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.basket:not(.is-empty):hover,
+.basket:focus-visible {
+  background: rgb(30 37 32 / 0.05);
+  outline: none;
+}
+
+.basket.is-empty {
+  cursor: default;
+}
+
+.basket__vessel {
+  position: relative;
+  width: 64px;
+  height: 36px;
+  border: 1.5px solid var(--ink);
+  border-top: 0;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.basket__vessel::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  right: -7px;
+  top: -1px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 1px;
+}
+
+.basket.is-empty .basket__vessel {
+  border-color: var(--ink-faint);
+}
+
+.basket.is-empty .basket__vessel::before {
+  background: var(--ink-faint);
+}
+
+.basket__vessel.is-pulsing {
+  animation: basket-catch 0.6s var(--ease-spring);
+}
+
+.basket__dots {
+  position: absolute;
+  inset: 3px 6px 5px;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-content: flex-start;
+  justify-content: center;
+  gap: 2px;
+  overflow: hidden;
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+
+.basket__dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 3px rgb(0 0 0 / 0.1);
+  animation: dot-land 0.5s var(--ease-spring) both;
+}
+
+.basket__text {
+  display: grid;
+  gap: 2px;
+  padding-bottom: 1px;
+}
+
+.basket__label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  font-variation-settings: 'opsz' 36;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.basket__count {
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.basket.is-empty .basket__label {
+  color: var(--ink-soft);
+}
+
+@keyframes basket-catch {
+  0% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.12, 0.86) translateY(3px);
+  }
+  60% {
+    transform: scale(0.96, 1.06);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes dot-land {
+  from {
+    transform: translateY(-10px) scale(0.4);
+    opacity: 0;
+  }
+}
